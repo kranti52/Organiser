@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <title>
+            My Web App
+        </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.indigo-pink.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+        <link  href="http://fonts.googleapis.com/css?family=Reenie+Beanie:regular" rel="stylesheet"type="text/css">
+        
+        
+        
+    </head>
+<body>
+   
+   <div class=" mdl-layout mdl-js-layout mdl-layout--fixed-header" >
+      <header class="mdl-layout__header " style="background-color:grey">
+        <div class="mdl-layout__header-row">
+          
+          <span class="mdl-layout-title">Organiser</span>
+        
+         
+          <div class="mdl-layout-spacer"></div>
+         
+         
+          <nav class="mdl-navigation">
+          
+             <h4>Hi &nbsp</h4><span id='check'> <h6> {{app.user.username}}</h6></span>&nbsp
+             {%if note_type is defined%}
+              <a class=" " id='dash' href="{{path('organise',{'username':note_type.user_username})}}"  style="width:50px;margin-left:50px">
+            <i class="material-icons">dashboard</i>
+          </a>
+          <div class="mdl-tooltip" for="dash">
+          Click to Go back to Notes Dashboard
+          </div>
+          {%endif%}
+       
+          </nav>
+          
+        </div>
+         
+      </header>
+          <div class="mdl-layout__drawer" >
+            <span class="mdl-layout-title">Organiser</span>
+            <nav class="mdl-navigation">
+              <a class="mdl-navigation__link" href="">Profile</a>
+              <a class="mdl-navigation__link" href="">Share</a>
+              <a class="mdl-navigation__link" href="">settings</a>
+              <a class="mdl-navigation__link" href="{{path('logout',{'username':app.user.username})}}">Logout</a>
+            </nav>
+          </div>
+      
+      
+     
+     
+     
+    
+  

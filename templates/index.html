@@ -1,0 +1,40 @@
+{%include 'header.html'%}
+<!-- Uses a transparent header that draws on top of the layout's background -->
+
+<div class="layout-transparent mdl-layout mdl-js-layout">
+  <header class="mdl-layout__header mdl-layout__header--transparent">
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="mdl-layout-title">Organiser</span>
+      <!-- Add spacer, to align navigation to the right -->
+      <div class="mdl-layout-spacer"></div>
+      <!-- Navigation -->
+      <nav class="mdl-navigation">
+        
+        <button class=" mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored " onclick='final.html' style="background:none">Sign in</button>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect  mdl-button--colored" href="" style="background:none">Sign up</button>
+       
+      </nav>
+    </div>
+  </header>
+  
+  <main class="mdl-layout__content">
+  {% if error %}
+  <p>{{ error }}</p>
+  {% endif %}
+      <div class='' style="margin-left:80%;margin-top:10%">
+        <div class="social-wrap a">
+        <table class="" style="displayinline-table;background:none;border-color:white;border-style:dotted;padding:15%;">
+          <tbody>
+            <tr ><td><a href='{{login_paths.facebook}}'><button id="facebook" class="mdl-button mdl-js-button  mdl-js-ripple-effect" >Sign in with Facebook</button></a></td></tr>
+            <tr><td><h5 style="color:white;text-align:center;">-------------or-------------</h5></td></tr>
+            <tr ><td style="padding-top:15%">
+              <a href="{{login_paths.google}}"><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="googleplus" >Sign in with Google</button></a></td></tr>
+          </tbody>
+        </table>
+        </div>
+         
+        </div>
+  </main>
+  
+{%include 'footer.html'%}

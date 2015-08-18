@@ -1,0 +1,187 @@
+{%include 'mainheader.html'%}
+<link  href="/templates/assets/css/modal.css" rel="stylesheet"type="text/css">
+
+    <main class="mdl-layout__content" style="background:url('__DIR__/../../../templates/assets/img/') center / cover repeat"  >
+     {%if note_type.status=='done' %}
+     {%set flag='1'%}
+     {%endif%}
+       <div style="background:;background:url('/templates/assets/img/City.jpg') center/cover ;color:;">
+         <div style="text-align:center;">
+           <div style="display:inline-block;margin-right:10% ; width:200px; background-color:;text-align:right;"><h3><b>Title Name:</b></h3></span></div>
+           <div style="display:inline-block; width:200px; background-color:;"><span><b>{{note_type.title}}</b></div>
+         </div>
+         <div style="text-align:center">
+           <div style="display:inline-block;margin-right:10% ; width:200px; background-color:;text-align:right;"><span><h3><b>Note Type:</b></h3></span></div>
+           <div style="display:inline-block; width:200px; background-color:;"><span><h6>{{note_type.status}}</h6></span></div>
+         </div>
+         <div style="text-align:center">
+           <div style="display:inline-block;margin-right:10% ; width:200px; background-color:;text-align:right;"><span><h3><b>Content:</b></h3></span></div>
+            <div style="display:inline-block; width:200px; background-color:;"><span><p>{{note_type.content}}</p></span></div>
+          </div>
+          <div style="text-align:center">
+            {%if note_type.status=='todo'%}
+              <a href='' class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"  style="background-color:Blue;margin-right:1%" disabled>
+                Todo
+              </a>
+            {%else%}
+              <a href='update_note?notes_id={{note_type.notes_id}}&changed_status=todo&current_status={{note_type.status}}' class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"  style="background-color:Blue;margin-right:1%">
+                Todo
+              </a>
+            {%endif%}
+             {%if note_type.status=='doing'%}
+              <a href='' class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="background-color:#61380B;margin-right:1%" disabled>
+                Doing
+              </a>
+            {%else%}
+              <a href='update_note?notes_id={{note_type.notes_id}}&changed_status=doing&current_status={{note_type.status}}' class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="background-color:#61380B;margin-right:1%">
+                Doing
+              </a>
+            {%endif%}
+            
+            {%if note_type.status=='done'%}
+              <a href='' class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="background-color:#3399FF;margin-right:1%" disabled>
+                Done
+              </a>
+            {%else%}
+              <a href='update_note?notes_id={{note_type.notes_id}}&changed_status=done&current_status={{note_type.status}}' class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="background-color:#3399FF;margin-right:1%">
+                Done
+              </a>
+            {%endif%}
+           
+            <a href='update_note?notes_id={{note_type.notes_id}}&changed_status=delete&current_status={{note_type.status}}' class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="background-color:#3B0B39;margin-right:1%">
+              Delete
+            </a>
+          </div>
+       </div>
+       <div style="text-align:center">
+         <h3>Click to Add events for this notes</h3>
+         <a class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" id='Add' href="#openModal" style="background-color:Orange">
+            <i class="material-icons">add </i>
+          </a>
+          <div class="mdl-tooltip" for="Add">
+          Click to Add event
+          </div>
+         
+       </div>
+    {%if event%}
+      {%set i=0%}
+      <div style="margin-top:20px">
+      <table class="mdl-data-table  mdl-data-table--selectable mdl-shadow--2dp " style="margin:10% auto;table-layout: fixed; ;white-space: nowrap;">
+            <thead >
+              <tr >
+                <th style="text-align:center">S. No.</th>
+                <th style="text-align:center">Event Name</th>
+                <th style="text-align:center">Event Status</th>
+                <th style="text-align:center">Description</th>
+                <th style="text-align:center">To Do</th>
+                <th style="text-align:center">Doing</th>
+                <th style="text-align:center">Done</th>
+                <th style="text-align:center">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+      {% for key in event%}
+      
+          {%set i=i+1%}
+      <tr>
+                
+                <td>{{i}}</td>
+                <td  style="text-overflow:ellipsis;
+                overflow:hidden;white-space: nowrap;">{{key.event_name}}</td>
+                <td>{{key.event_status}}</td>
+                <td>{{key.description}}</td>
+                  <td >
+                     {%if ((key.event_status=='todo') or (flag is defined)) %}
+                        <a href='' class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"  style="background-color:#FF5050;margin-right:1%" disabled>
+                          Todo
+                        </a>
+                      {%else%}
+                        <a href='update_event?event_id={{key.id}}&changed_event_status=todo' class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"  style="background-color:#FF5050;margin-right:1%">
+                          Todo
+                        </a>
+                      {%endif%}
+                  
+                  </td>
+                  <td>  
+                  {%if (key.event_status=='doing' or (flag is defined)) %}
+                    <a href='' class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"  style="background-color:#0066FF;margin-right:1%" disabled>
+                          Doing
+                        </a>
+                      {%else%}
+                        <a href='update_event?event_id={{key.id}}&changed_event_status=doing' class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"  style="background-color:#0066FF;margin-right:1%">
+                          Doing
+                        </a>
+                      {%endif%}</td>
+                  <td>
+                     {%if (key.event_status=='done' or (flag is defined)) %}
+                    <a href='' class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"  style="background-color:#009933;margin-right:1%" disabled>
+                          Done
+                        </a>
+                      {%else%}
+                        <a href='update_event?event_id={{key.id}}&changed_event_status=done' class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"  style="background-color:#009933;margin-right:1%">
+                          Done
+                        </a>
+                      {%endif%}
+                    
+                  </td>
+                  <td><a href='update_event?event_id={{key.id}}&changed_event_status=delete' class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                    Delete
+                  </a></td>
+              </tr>
+      {%endfor%}
+       </tbody>
+          </table>
+        </div>
+   
+        
+      {%else%}
+      
+      
+      {%endif%}  
+    </main>
+    <!--Modal Code-->
+    <div id="openModal" class="modalDialog">
+         <div>
+           <div>	<a href="#close" title="Close" class="close">X</a></div>
+             <span style="text-align:center"><h3>Please fill your Event information</h3></span>
+              <form action="addNewEvent?'user_name'={{note_type.user_username}}" method="GET" style="text-align:center" onsubmit="">
+                
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo" hidden>
+                  <textarea class="mdl-textfield__input" name='notes_status'  type="text" rows= "1" id="note_status" hidden>{{note_type.status}}</textarea>
+                  <label class="mdl-textfield__label" for="event_status" hidden>Event Name</label>
+                </div><br>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo" hidden>
+                  <textarea class="mdl-textfield__input" name='note_title'  type="text" rows= "1" id="note_title" hidden>{{note_type.title}}</textarea>
+                  <label class="mdl-textfield__label" for="note_title" hidden>Event Name</label>
+                </div><br>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+                  <textarea class="mdl-textfield__input" name='event_name'  type="text" rows= "1" id="event_name" required></textarea>
+                  <label class="mdl-textfield__label" for="event_name" >Event Name</label>
+                </div><br>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+                  <textarea class="mdl-textfield__input" type="text" name='description' rows= "3" id="description"required ></textarea>
+                  <label class="mdl-textfield__label" for="description">Enter Description</label>
+                </div><br>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+                  {%if note_type.status=='done'%}
+                    <select id="event_status" name="event_status" required>
+                     
+                      <option >done</option>
+                    </select>
+                  {%else%}
+                    <select id="event_status" name="event_status" required>
+                      <option >todo</option>
+                      <option>doing</option>
+                      <option >done</option>
+                    </select>
+                  {%endif%}
+                  <label class="mdl-textfield__label"  for="event_status">Enter type</label>
+                </div><br>
+                <button type="submit"  class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored" >Submit</button>
+              </form>
+          </div>
+       </div>
+    
+    
+    
+{%include 'mainfooter.html'%}

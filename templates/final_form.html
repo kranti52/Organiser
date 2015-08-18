@@ -1,0 +1,37 @@
+{%include 'mainheader.html'%}
+    <main class="mdl-layout__content" style="background:url('__DIR__/../../../templates/assets/img/') center / cover repeat"  >
+      <span style="text-align:center"><h3>Please fill your notes information</h3></span>
+       <form action="addNewList?'user_name'={{username}}" method="GET" style="text-align:center" onsubmit="">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo" hidden>
+            <textarea class="mdl-textfield__input" name='user_id' type="text" rows= "1" id="id" hidden>{{user_id}}</textarea>
+            <label class="mdl-textfield__label" for="id" hidden></label>
+          </div><br> 
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+            <textarea class="mdl-textfield__input" name='user_name' type="text" rows= "1" id="username" hidden>{{username}}</textarea>
+            <label class="mdl-textfield__label" for="username"></label>
+          </div><br>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+            <textarea class="mdl-textfield__input" name='notes_status'  type="text" rows= "1" id="status" readonly="readonly" >{{note_status}}</textarea>
+            <label class="mdl-textfield__label" for="status" >Notes type</label>
+          </div><br>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+            <textarea class="mdl-textfield__input" type="text" name='title' rows= "3" id="title" autofocus></textarea>
+            <label class="mdl-textfield__label" for="title">Enter Title here</label>
+          </div><br>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+            <textarea class="mdl-textfield__input" type="text"  name='content' rows= "5" id="title_content" ></textarea>
+            <label class="mdl-textfield__label"  for="title_content">Enter content here</label>
+          </div><br>
+        <button type="submit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored" >Submit</button>
+        </form>
+    
+    </main>
+     <!--    <script>
+      function Save_action() {
+      // var title=$('#title').html();
+       //var content =$('#title_content').html();
+      // console.log("{#{{path('add_list',{'userid':user_id,'user_name':username,'Status':status})}}#}");
+      // window.location.href="{#{{path('add_list',{'userid':user_id,'user_name':username,'Status':status})}}#}";
+      } 
+      </script>-->
+{%include 'mainfooter.html'%}

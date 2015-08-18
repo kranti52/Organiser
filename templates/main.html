@@ -1,0 +1,58 @@
+{%include 'mainheader.html'%}
+<link  href="/templates/assets/css/sticky_notes.css" rel="stylesheet"type="text/css">
+
+    <main class="mdl-layout__content" style="background:url('__DIR__/../../../templates/assets/img/') center / cover repeat"  >
+      <div class="demo-grid-1 mdl-grid">
+        <div class="mdl-cell mdl-cell--4-col"> 
+           <ul id="todo">
+              <h1 style="text-align:center">To Do</h1>
+              <div id="todo_button" style="margin-top:15%">
+                <div style="text-align:center;"><button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="add_todo();" style=" background-color: black;"><i class="material-icons">add</i></button><br>
+                {%if todo%}
+               
+                  {% for key in todo %}
+                      <li><a href='organise/add?status=todo&title={{key.title}}'><p id='title'>{{key.title}}</p></a></li>
+                  {% endfor %}
+                {%endif%}
+                
+                  </div>
+               </div>   
+            
+            </ul>
+          </div>
+        <div class="mdl-cell mdl-cell--4-col">
+          <ul id="doing">
+              <h1 style="text-align:center">Doing</h1>
+              <div id="doing_button" style="margin-top:15%">
+                <div style="text-align:center;"> <button  class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="add_doing();" style=" background-color: green; "><i class="material-icons">add</i></button><br>
+                 {%if doing%}
+               
+                  {% for key in doing %}
+                      <li><a href='organise/add?status=doing&title={{key.title}}'><p id='title'>{{key.title}}</p></a></li>
+                  {% endfor %}
+                {%endif%}
+                </div>
+               </div>   
+            
+            </ul></div>
+        <div class="mdl-cell mdl-cell--4-col">
+          <ul id="done">
+              <h1 style="text-align:center">Done</h1>
+              <div id="done_button" style="margin-top:15%">
+                <div style="text-align:center;"><button  class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="add_done();" style=" background-color: red; "><i class="material-icons">add</i></button><br>
+                 {%if done%}
+               
+                  {% for key in done %}
+                      <li><a href='organise/add?status=done&title={{key.title}}'><p id='title'>{{key.title}}</p></a></li>
+                  {% endfor %}
+                {%endif%}
+                </div>
+               </div>   
+            
+            </ul></div>
+</div>
+        
+        
+     </main>
+
+{%include 'mainfooter.html'%}
